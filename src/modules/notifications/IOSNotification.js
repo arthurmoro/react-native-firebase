@@ -67,12 +67,20 @@ export default class IOSNotification {
         getLogger(notifications).debug(
           `Completion handler called for notificationId=${notificationId}`
         );
-        getNativeModule(notifications).complete(notificationId, fetchResult);
+        try {
+          getNativeModule(notifications).complete(notificationId, fetchResult);
+        } catch (err) {
+          console.log(err);
+        }
       }
     };
 
     if (notifications.ios.shouldAutoComplete) {
-      complete(notifications.ios.backgroundFetchResult.noData);
+      try {
+        complete(notifications.ios.backgroundFetchResult.noData);
+      } catch (err) {
+        consolel.log(err);
+      }
     } else {
       this._complete = complete;
     }
