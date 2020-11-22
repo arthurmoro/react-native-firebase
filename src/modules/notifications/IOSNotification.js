@@ -79,7 +79,7 @@ export default class IOSNotification {
       try {
         complete(notifications.ios.backgroundFetchResult.noData);
       } catch (err) {
-        consolel.log(err);
+        console.log(err);
       }
     } else {
       this._complete = complete;
